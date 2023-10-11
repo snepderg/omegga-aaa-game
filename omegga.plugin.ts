@@ -16,8 +16,6 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
   }
 
   async init() {
-    this.omegga.broadcast(`Hello! AAA Game loaded.`);
-
     // Load the game logic
     let textGame = new TextGame();
 
