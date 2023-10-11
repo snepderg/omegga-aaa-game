@@ -26,4 +26,4 @@ _TODO: more steps...?_
 
 ## Usage
 
-_TODO: include some usage information_
+* Command: `/aaa <str>`: Interact with the game. The script will prompt you with the previous phrase. Your goal is to increment the phrase alphabetically (don't forget to carry!)
