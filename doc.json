@@ -1,7 +1,20 @@
 {
   "name": "aaa-game",
-  "description": "A typed safe Omegga plugin.",
-  "author": "snepderg",
+  "description": "(Typed-safe) An alphabetical text game for Brickadia.",
+  "author": "Snepderg, Critical Floof",
   "config": {},
-  "commands": []
+  "commands": [
+    {
+      "name": "/aaa",
+      "description": "Prompts the AAA game. The script will tell you the previous phrase.",
+      "example": "/aaa abc",
+      "args": [
+        {
+          "name": "phrase",
+          "description": "an alphabetical string (case-insensitive, spaces are okay).",
+          "required": true
+        }
+      ]
+    }
+  ]
 }
