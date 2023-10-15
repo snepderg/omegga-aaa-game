@@ -20,5 +20,5 @@ A typed safe plugin for [omegga](https://github.com/brickadia-community/omegga).
 ## Usage
 
 * Command: `/aaa <str>`: Interact with the game. The script will prompt you with the previous phrase. Your goal is to increment the phrase alphabetically (don't forget to carry!)
-- Example | If the current sequence is `PNG`, the game expects a user to type `/aaa POG` (case-insensitive, spaces are okay). If they type the wrong phrase, it will tell them what the previous phrase was.
+- Example | If the current sequence is `POG`, the game expects a user to type `/aaa POH` (case-insensitive, spaces are okay). If they type the wrong phrase, it will tell them what the previous phrase was.
 - Note: If you get the phrase incorrect, the script whispers in response, on success the phrase you typed is broadcasted.
