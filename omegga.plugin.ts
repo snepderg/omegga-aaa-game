@@ -55,10 +55,6 @@ export default class Plugin implements OmeggaPlugin<any, Storage> {
     loadedGameState ? textGame.setPhrase(loadedGameState) : textGame.setPhrase("A");
 
     this.omegga.on("cmd:aaa", async (name: string, ...args: string[]) => {
-      // Enforce cooldowns and permissions
-      if (!this.isAuthorized(name)) return;
-      this.setAuthorizedTimeout(name)
-
       // Default case: If no arguments are provided, whisper the current phrase to the user
       if (args.length === 0) {
         this.omegga.whisper(name, `The current phrase is ${textGame.getPhrase()}.`);
@@ -67,6 +63,10 @@ export default class Plugin implements OmeggaPlugin<any, Storage> {
 
       // Validate the user's answer
       if (textGame.checkAnswer(args.join(" "))) {
+        // Enforce cooldowns and permissions
+        if (!this.isAuthorized(name)) return;
+        this.setAuthorizedTimeout(name)
+
         textGame.incrementPhrase();
         this.store.set("phrase", textGame.getPhrase());
         this.omegga.broadcast( `${name} got the correct answer! The current phrase is ${textGame.getPhrase()}.`);
