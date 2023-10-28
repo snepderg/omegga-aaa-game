@@ -10,7 +10,7 @@ export default class TextGame {
      * Gets the next phrase by incrementing the current phrase by one character.
      * If the current phrase ends with "Z", it rolls over to "A" and increments the previous character.
      */
-    increment_phrase(): string {
+    incrementPhrase(): string {
         let chars = this.current_phrase.split("");
         this.increment(chars, chars.length - 1);
         this.current_phrase = chars.join("");
@@ -42,7 +42,7 @@ export default class TextGame {
      * @param {string} answer - The user's answer.
      * @returns {boolean} True if the answer is correct, false otherwise.
      */
-    check_answer(answer: string): boolean {
+    checkAnswer(answer: string): boolean {
         if (answer.toUpperCase() === this.current_phrase) {
             return true;
         }
