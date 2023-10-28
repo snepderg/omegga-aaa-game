@@ -1,15 +1,14 @@
 import OmeggaPlugin, { OL, PS, PC } from "omegga";
 import TextGame from "./game_logic";
 
-type Config = { foo: string };
-type Storage = { bar: string };
+type Storage = { phrase: string };
 
-export default class Plugin implements OmeggaPlugin<Config, Storage> {
+export default class Plugin implements OmeggaPlugin<any, Storage> {
   omegga: OL;
-  config: PC<Config>;
+  config: PC<any>;
   store: PS<Storage>;
 
-  constructor(omegga: OL, config: PC<Config>, store: PS<Storage>) {
+  constructor(omegga: OL, config: PC<any>, store: PS<Storage>) {
     this.omegga = omegga;
     this.config = config;
     this.store = store;
@@ -30,9 +29,9 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
 
       // Validate the user's answer
       if (textGame.checkAnswer(args.join(" "))) {
-        this.omegga.broadcast( `${name} got the correct answer! The current phrase is ${textGame.getPhrase()}.`);
         textGame.incrementPhrase();
         this.store.set("phrase", textGame.getPhrase());
+        this.omegga.broadcast( `${name} got the correct answer! The current phrase is ${textGame.getPhrase()}.`);
       } else {
         this.omegga.whisper(name, `Incorrect! The current phrase is ${textGame.getPhrase()}.`);
       }

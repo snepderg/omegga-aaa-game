@@ -6,6 +6,7 @@ export default class TextGame {
         this.current_phrase = "A";
     }
 
+    // To be used externally
     getPhrase(): string {
         return this.current_phrase;
     }
@@ -31,7 +32,11 @@ export default class TextGame {
      * @returns {boolean} True if the answer is correct, false otherwise.
      */
     checkAnswer(answer: string): boolean {
-        if (answer.toUpperCase() === this.current_phrase) {
+        let chars = this.current_phrase.split("");
+        this.increment(chars, chars.length - 1);
+        let next_phrase = chars.join("");
+
+        if (answer.toUpperCase() === next_phrase) {
             return true;
         }
         else {
