@@ -16,20 +16,25 @@ export default class Plugin implements OmeggaPlugin<Config, Storage> {
   }
 
   async init() {
-    // Load the game logic
     let textGame = new TextGame();
 
-    let prevPhrase = "";
+    let loadedGameState = await this.store.get("phrase");
+    loadedGameState ? textGame.setPhrase(loadedGameState) : textGame.setPhrase("A");
 
-    // Create a command to play the game
     this.omegga.on("cmd:aaa", async (name: string, ...args: string[]) => {
-      // Check if the user"s answer is correct
+      // Default case: If no arguments are provided, whisper the current phrase to the user
+      if (args.length === 0) {
+        this.omegga.whisper(name, `The current phrase is ${textGame.getPhrase()}.`);
+        return;
+      }
+
+      // Validate the user's answer
       if (textGame.checkAnswer(args.join(" "))) {
-        this.omegga.broadcast( `${name} got the correct answer! The current phrase is ${textGame.current_phrase}.`);
-        prevPhrase = textGame.current_phrase;
+        this.omegga.broadcast( `${name} got the correct answer! The current phrase is ${textGame.getPhrase()}.`);
         textGame.incrementPhrase();
+        this.store.set("phrase", textGame.getPhrase());
       } else {
-        this.omegga.whisper(name, `Incorrect! The current phrase is ${prevPhrase}.`);
+        this.omegga.whisper(name, `Incorrect! The current phrase is ${textGame.getPhrase()}.`);
       }
     });
 
