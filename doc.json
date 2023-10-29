@@ -2,7 +2,28 @@
   "name": "aaa-game",
   "description": "(Typed-safe) An alphabetical text game for Brickadia.",
   "author": "Snepderg, Critical Floof",
-  "config": {},
+  "config": {
+    "Limited Mode": {
+      "description": "Only users with Cooldown Bypass Role are allowed to use the command.",
+      "default": "false",
+      "type": "boolean"
+    },
+    "Command Cooldown": {
+        "description": "Cooldown time (in seconds) for using aaa-game.",
+        "default": 60,
+        "type": "number"
+    },
+    "Cooldown Bypass Role": {
+        "description": "The role which isn't affected by silly cooldowns.",
+        "default": "Admin",
+        "type": "role"
+    },
+    "Blacklist Role": {
+        "description": "The role which prevents any use of aaa-game.",
+        "default": "Admin",
+        "type": "role"
+    }
+  },
   "commands": [
     {
       "name": "/aaa",
