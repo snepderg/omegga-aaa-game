@@ -13,6 +13,8 @@ Your plugin will be installed via omegga install gh:snepderg/aaa-game
 
 A typed safe plugin for [omegga](https://github.com/brickadia-community/omegga).
 
+- Features config for cooldown and role restrictions.
+
 ## Install
 
 `omegga install gh:snepderg/aaa-game`
